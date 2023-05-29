@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Data Assistant</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Data Assistant</title>
+  <style>
+    .app-header {
+      text-align: center;
+      background-color: #f1f1f1;
+      padding: 20px;
+    }
+
+    .app-tags {
+      margin-top: 20px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 5px 10px;
+      background-color: #e0e0e0;
+      margin-right: 5px;
+    }
+
+    .metrics-info {
+      margin-top: 20px;
+    }
+
+    .metric {
+      display: inline-block;
+      padding: 5px 10px;
+      background-color: #e0e0e0;
+      margin-right: 5px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 50px;
+         column-gap: 2rem;
+    }
+
+    .prompt {
+      width: 600px;
+      border: 1px solid #ccc;
+      padding: 20px;
+      background-color: #f9f9f9;
+      margin-bottom: 20px;
+    }
+
+    .form-container {
+      width: 400px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .hint-box {
+      margin-top: 5px;
+      font-size: 12px;
+      color: #888;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-header">
+    <h1>Data Assistant</h1>
+    <h3>La aplicación más astuta del universo 🚀. ¿Aburrido de los informes aburridos? ¡No temas! Esta app analiza tus bases de datos! Prepárate para descubrir patrones, comportamientos y métricas épicas. 🌟 ¡Resumiremos todo en un pestañeo con conclusiones deslumbrantes! 💡🎉</h3>
+    <div class="app-tags">
+      <span class="tag">⭐ Data</span>
+      <span class="tag">🌐 Social Media</span>
+      <span class="tag">📣 Content Creation</span>
+      <span class="tag">🚀 Campaigns</span>
+      <span class="tag">🔍 SEO</span>
+    </div>
+    <div class="metrics-info">
+      <span class="metric">84</span>
+      <span class="metric-label">Total uses</span>
+      <span class="metric">1</span>
+      <span class="metric-label">Saved</span>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="prompt">
+      <h2>Prompt:</h2>
+      <div id="promptText"></div>
+    </div>
+
+    <div class="form-container">
+      <h1>Edit tags</h1>
+      <form id="inputForm">
+        <div class="form-group">
+          <label for="input1">Breve descripcion de la base de datos: </label>
+          <input type="text" id="input1" name="input1" />
+          <div class="hint-box"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="input2">Base de datos:</label>
+          <input type="text" id="input2" name="input2"  />
+          <div class="hint-box"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="input3">Cantidad de variables disponibles</label>
+          <input type="text" id="input3" name="input3"  />
+          <div class="hint-box"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="input4">Cantidad de registros: </label>
+          <input type="text" id="input4" name="input4"/>
+          <div class="hint-box"></div>
+        </div>
+
+        <button type="submit">Generate Prompt</button>
+      </form>
+    </div>
+  </div>
+
+  <button id="copyButton">Copy Prompt</button>
+  <button id="editButton">Edit Prompt</button>
+  <button id="copyInputsButton">Copy Inputs as JSON</button>
+
+  <script>
+    // Obtener referencia a los elementos del formulario
+    const inputForm = document.getElementById("inputForm");
+    const input1 = document.getElementById("input1");
+    const input2 = document.getElementById("input2");
+    const input3 = document.getElementById("input3");
+    const input4 = document.getElementById("input4");
+
+
+    // Manejar el evento de envío del formulario
+    inputForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      // Obtener los valores de los campos de entrada
+      const value1 = input1.value;
+      const value2 = input2.value;
+      const value3 = input3.value;
+      const value4 = input4.value;
+
+
+      // Construir el prompt con los valores ingresados
+      const promptText = `Generar un informe sobre la siguiente base de datos y extraer tendencias y métricas relevantes. La base de datos contiene ${input1}
+Base de datos: ${input2}. 
+Variables disponibles: ${input3}. Cantidad de registros: ${input4}
+
+Identificar en el análisis patrones y comportamientos a lo largo del tiempo. En una tabla describir métricas comunes e interesantes. Y finalmente hacer un breve resumen con las conclusiones del analisis `;
+
+      // Actualizar el texto del prompt en el HTML
+      document.getElementById("promptText").textContent = promptText;
+    });
+
+    // Función para copiar el prompt al portapapeles
+    function copyPrompt() {
+      const promptText = document.getElementById("promptText").textContent;
+      navigator.clipboard.writeText(promptText);
+      alert("Prompt copied to clipboard!");
+    }
+
+    // Manejar el evento del botón de copiar el prompt
+    document.getElementById("copyButton").addEventListener("click", copyPrompt);
+  </script>
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
